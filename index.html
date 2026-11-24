@@ -1,487 +1,236 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Simulador Hipotecario</title>
-
-    <link rel="stylesheet" href="css/styles.css">
-
-</head>   
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASTRAEUS | Simulador Hipotecario</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <link rel="stylesheet" href="css/ajustes-simulador.css">
+</head>
 <body>
+  <!-- Menú ASTRAEUS -->
+  <button id="menuBoton" class="menu-boton" type="button" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div id="menuOverlay" class="menu-overlay"></div>
+  <aside id="menuLateral" class="menu-lateral">
+    <div class="menu-header">
+      <div class="menu-logo">ASTRAEUS</div>
+      <button id="cerrarMenu" class="cerrar-menu" type="button" aria-label="Cerrar menú">×</button>
+    </div>
+    <nav class="menu-navegacion">
+      <a href="index.html" class="menu-opcion"><span class="menu-icono">⌂</span><span>SIMULADOR HIPOTECARIO</span></a>
+      <a href="guia-conceptual.html" class="menu-opcion"><span class="menu-icono">?</span><span>GUÍA CONCEPTUAL</span></a>
+      <a href="hogares-jovenes.html" class="menu-opcion"><span class="menu-icono">⌂</span><span>HOGARES JÓVENES</span></a>
+    </nav>
+    <div class="menu-footer">Simulador Hipotecario<br>ASTRAEUS</div>
+  </aside>
 
-    <!-- ENCABEZADO -->
+  <div id="avisoModal" class="modal-aviso" role="dialog" aria-modal="true" aria-labelledby="avisoTitulo">
+    <div class="modal-contenido">
+      <h2 id="avisoTitulo">Aviso importante</h2>
+      <ul>
+        <li>Simulación académica e informativa; no representa una oferta ni una obligación bancaria.</li>
+        <li>Los cálculos parten de los catálogos, tasas, productos y convenciones del Excel de referencia. El resultado depende de la fecha de simulación.</li>
+        <li>La equivalencia hasta centavos está verificada para el escenario de prueba del Excel. Otras combinaciones y el tramo superior a $10 millones siguen pendientes de validación integral.</li>
+        <li>Los productos con Infonavit y Cofinavit utilizan supuestos de referencia; verifica sus montos y políticas antes de aplicarlos a operaciones reales.</li>
+      </ul>
+      <button id="btnAceptarAviso" type="button">Entendido</button>
+    </div>
+  </div>
 
-    <header class="header">
+  <header>
+    <h1>ASTRAEUS</h1>
+    <nav><a href="index.html">Inicio</a><a href="guia-conceptual.html">Guía conceptual</a></nav>
+  </header>
 
-        <div class="logo">
-            Simulador Hipotecario
+  <main>
+    <div class="hero">
+      <h2>Simula tu crédito hipotecario</h2>
+      <p>Motor de matemáticas financieras con cálculo sobre saldo insoluto, tasa ordinaria Actual/360, pagos por millar y CAT mediante TIR.</p>
+    </div>
+
+    <section class="formulario">
+      <h2>Datos del crédito</h2>
+      <p class="nota-campo">Selecciona primero cómo quieres calcular: por valor del inmueble, por ingresos o por el crédito deseado. Los campos marcados con * son obligatorios según la modalidad.</p>
+      <div class="form-grid">
+        <div class="campo">
+          <label for="producto">Producto *</label>
+          <select id="producto">
+            <option value="">Selecciona una opción</option>
+            <option value="1">Adquisición tradicional</option>
+            <option value="2">Adquisición con apoyo Infonavit</option>
+            <option value="3">Cofinavit</option>
+            <option value="4">Pasivo hipotecario</option>
+            <option value="5">Pasivo con apoyo Infonavit</option>
+            <option value="6">Liquidez vivienda</option>
+            <option value="7">CI+CB Cofinavit</option>
+          </select>
         </div>
-
-        <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Información</a>
-        </nav>
-
-    </header>
-
-
-    <!-- CONTENIDO PRINCIPAL -->
-
-    <main>
-
-        <!-- PRESENTACIÓN -->
-
-        <section class="hero">
-
-            <h1>
-                Simula tu crédito hipotecario
-            </h1>
-
-            <p>
-                Calcula cuánto podrías obtener,
-                tu pago mensual y las condiciones
-                estimadas de tu crédito.
-            </p>
-
-        </section>
-
-
-        <!-- SIMULADOR -->
-
-        <section class="simulador">
-
-
-            <!-- FORMULARIO -->
-
-            <div class="card formulario">
-
-                <h2>
-                    Datos del crédito
-                </h2>
-
-
-                <div class="form-grid">
-
-
-                    <div class="campo">
-
-                        <label for="producto">
-                            Producto
-                        </label>
-
-                        <select id="producto">
-
-                            <option value="">
-                                Selecciona una opción
-                            </option>
-
-                            <option value="1">
-                                Adquisición tradicional
-                            </option>
-
-                            <option value="2">
-                                Adquisición con apoyo Infonavit
-                            </option>
-
-                            <option value="3">
-                                Cofinavit
-                            </option>
-
-                            <option value="4">
-                                Pasivo hipotecario
-                            </option>
-
-                            <option value="5">
-                                Pasivo con apoyo Infonavit
-                            </option>
-
-                            <option value="6">
-                                Liquidez vivienda
-                            </option>
-
-                            <option value="7">
-                                CI+CB Cofinavit
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="esquema">
-                            Esquema
-                        </label>
-
-                        <select id="esquema">
-
-                            <option value="valora">
-                                Valora
-                            </option>
-
-                            <option value="pagos">
-                                Pagos Oportunos
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="plazo">
-                            Plazo
-                        </label>
-
-                        <select id="plazo">
-
-                            <option value="7">
-                                7 años
-                            </option>
-
-                            <option value="10">
-                                10 años
-                            </option>
-
-                            <option value="15">
-                                15 años
-                            </option>
-
-                            <option value="20">
-                                20 años
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="campania">
-                            Campaña
-                        </label>
-
-                        <select id="campania">
-
-                            <option value="ninguna">
-                                Ninguna
-                            </option>
-
-                            <option value="wm">
-                                WM
-                            </option>
-
-                            <option value="premium">
-                                Premium
-                            </option>
-
-                            <option value="vinculacion">
-                                Vinculación
-                            </option>
-
-                            <option value="green">
-                                Hipoteca Green
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="riesgo">
-                            Índice de riesgo
-                        </label>
-
-                        <select id="riesgo">
-
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5 (R)</option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="actividad">
-                            Actividad económica
-                        </label>
-
-                        <select id="actividad">
-
-                            <option value="empleado">
-                                Empleado
-                            </option>
-
-                            <option value="independiente">
-                                Independiente
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="valorVivienda">
-                            Valor de la vivienda
-                        </label>
-
-                        <input
-                            type="number"
-                            id="valorVivienda"
-                            placeholder="$ 0"
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="ingreso">
-                            Ingreso mensual
-                        </label>
-
-                        <input
-                            type="number"
-                            id="ingreso"
-                            placeholder="$ 0"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    id="btnCalcular"
-                    class="btn-calcular">
-
-                    Calcular crédito
-
-                </button>
-
+        <div class="campo"><label for="tipoCalculo">¿Qué deseas calcular? *</label>
+          <select id="tipoCalculo">
+            <option value="valor">Por valor de la vivienda</option>
+            <option value="ingresos">Por ingresos mensuales</option>
+            <option value="credito">Por monto de crédito deseado</option>
+          </select>
+        </div>
+        <div class="campo"><label for="esquema">Esquema *</label><select id="esquema">
+          <option value="valora">Valora</option><option value="pagos">Pagos Oportunos</option>
+        </select></div>
+        <div class="campo"><label for="plazo">Plazo *</label><select id="plazo">
+          <option value="7">7 años</option><option value="10">10 años</option><option value="15" selected>15 años</option><option value="20">20 años</option>
+        </select></div>
+        <div class="campo"><label for="campania">Campaña *</label><select id="campania">
+          <option value="ninguna">Ninguna</option><option value="wm">WM</option><option value="premium">Premium</option>
+          <option value="vinculacion">Vinculación</option><option value="green" selected>Hipoteca Green</option>
+        </select></div>
+        <div class="campo"><label for="riesgo">Índice de riesgo *</label><select id="riesgo">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5 (R)</option>
+        </select></div>
+        <div class="campo"><label for="actividad">Actividad económica *</label><select id="actividad">
+          <option value="empleado">Empleado</option><option value="independiente">Independiente</option>
+        </select></div>
+        <div class="campo"><label for="tipoComision">Tipo de comisión *</label><select id="tipoComision">
+          <option value="1">Comisión al contratar (apertura)</option><option value="2">Comisión por pagos anticipados (prepago)</option>
+        </select><p class="ayuda-campo">Define cuándo aplica la comisión según el producto y la campaña.</p></div>
+        <div class="campo" id="campoValor"><label for="valorVivienda">Valor de la vivienda ($) *</label>
+          <input id="valorVivienda" type="number" min="0" step="0.01" placeholder="Ej. 1,000,000">
+        </div>
+        <div class="campo" id="campoIngreso"><label for="ingreso">Ingreso mensual ($) *</label>
+          <input id="ingreso" type="number" min="0" step="0.01" placeholder="Ej. 35,000">
+        </div>
+        <div class="campo" id="campoCredito"><label for="montoCredito">Monto del crédito deseado ($) *</label>
+          <input id="montoCredito" type="number" min="0" step="0.01" placeholder="Ej. 700,000">
+        </div>
+        <div class="campo"><label for="fechaReferencia">Fecha de simulación</label>
+          <input id="fechaReferencia" type="date">
+          <p class="ayuda-campo">La fecha afecta los días del mes y los intereses. Para comparar con Excel, usa la misma fecha.</p>
+        </div>
+      </div>
+      <!-- Opciones del Excel: se conservan, pero no saturan el formulario principal -->
+      <details class="opciones-avanzadas" id="opcionesSeguroApoyo">
+        <summary>
+          <span>
+            <strong>Seguros y apoyos de vivienda</strong>
+            <small>Solo si deseas personalizar tu seguro o utilizar Infonavit / Cofinavit</small>
+          </span>
+          <span class="indicador-detalles" aria-hidden="true">+</span>
+        </summary>
+        <div class="contenido-avanzado">
+          <p class="explicacion-avanzada">Estos datos también existen en la calculadora de referencia. Si no necesitas cambiarlos, puedes conservar los valores iniciales.</p>
+          <div class="form-grid">
+            <div class="campo">
+              <label for="segurosExternos">¿Cómo quieres considerar los seguros?</label>
+              <select id="segurosExternos">
+                <option value="no">Incluir seguros del crédito (opción de referencia)</option>
+                <option value="si">Contratar seguros externos (no sumarlos al pago)</option>
+              </select>
+              <p class="ayuda-campo">La simulación original considera seguros de vida y daños; puedes indicar que se contratarán por separado.</p>
             </div>
-
-
-            <!-- RESULTADOS -->
-
-            <div class="card resultados">
-
-                <h2>
-                    Resultado
-                </h2>
-
-
-                <div class="resultado-principal">
-
-                    <span>
-                        Crédito estimado
-                    </span>
-
-                    <strong id="creditoResultado">
-                        $0
-                    </strong>
-
-                </div>
-
-
-                <div class="resultados-grid">
-
-
-                    <div class="resultado">
-
-                        <span>
-                            Pago mensual
-                        </span>
-
-                        <strong id="pagoResultado">
-                            $0
-                        </strong>
-
-                    </div>
-
-
-                    <div class="resultado">
-
-                        <span>
-                            Tasa
-                        </span>
-
-                        <strong id="tasaResultado">
-                            0%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="resultado">
-
-                        <span>
-                            CAT
-                        </span>
-
-                        <strong id="catResultado">
-                            0%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="resultado">
-
-                        <span>
-                            Plazo
-                        </span>
-
-                        <strong id="plazoResultado">
-                            0 años
-                        </strong>
-
-                    </div>
-
-                </div>
-
+            <div class="campo">
+              <label for="valorAsegurable">Valor para calcular el seguro de daños (opcional)</label>
+              <input id="valorAsegurable" type="number" min="0" step="0.01" placeholder="Dejar vacío para usar el valor de la vivienda">
+              <p class="ayuda-campo">Solo cambia este importe si el valor asegurable es diferente al precio de la casa.</p>
             </div>
-
-        </section>
-
-
-        <!-- GASTOS -->
-
-        <section class="card gastos">
-
-            <h2>
-                Gastos iniciales
-            </h2>
-
-
-            <div class="gastos-grid">
-
-                <div>
-
-                    <span>
-                        Avalúo
-                    </span>
-
-                    <strong id="avaluo">
-                        $0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        Impuestos
-                    </span>
-
-                    <strong id="impuestos">
-                        $0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        Notario
-                    </span>
-
-                    <strong id="notario">
-                        $0
-                    </strong>
-
-                </div>
-
-
-                <div>
-
-                    <span>
-                        Comisión
-                    </span>
-
-                    <strong id="comision">
-                        $0
-                    </strong>
-
-                </div>
-
+            <div class="campo" id="campoCotizacion">
+              <label for="sueldoCotizacion">Salario mensual registrado ante Infonavit ($)</label>
+              <input id="sueldoCotizacion" type="number" min="0" step="0.01" placeholder="Ej. 20,000">
+              <p class="ayuda-campo">Se usa para calcular las aportaciones del patrón. Necesario únicamente en Adquisición o Pasivo con Apoyo Infonavit (productos 2 y 5).</p>
             </div>
-
-        </section>
-
-
-        <!-- TABLA DE AMORTIZACIÓN -->
-
-        <section class="card amortizacion">
-
-            <h2>
-                Tabla de amortización
-            </h2>
-
-            <div class="tabla-container">
-
-                <table>
-
-                    <thead>
-
-                        <tr>
-
-                            <th>Mes</th>
-                            <th>Saldo inicial</th>
-                            <th>Interés</th>
-                            <th>Pago</th>
-                            <th>Amortización</th>
-                            <th>Seguro</th>
-                            <th>Saldo final</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody id="tablaBody">
-
-                    </tbody>
-
-                </table>
-
+            <div class="campo" id="campoSubcuenta">
+              <label for="subcuenta">Ahorro en la subcuenta de vivienda ($, opcional)</label>
+              <input id="subcuenta" type="number" min="0" step="0.01" placeholder="Ej. 50,000">
+              <p class="ayuda-campo">Saldo acumulado para vivienda. Aparece únicamente al elegir Cofinavit o CI+CB Cofinavit.</p>
             </div>
+          </div>
+        </div>
+      </details>
 
-        </section>
+      <details class="opciones-avanzadas" id="opcionesPrepago">
+        <summary>
+          <span>
+            <strong>Simular un pago anticipado</strong>
+            <small>Opcional: adelantar dinero al capital en un mes específico</small>
+          </span>
+          <span class="indicador-detalles" aria-hidden="true">+</span>
+        </summary>
+        <div class="contenido-avanzado">
+          <p class="explicacion-avanzada">Por ejemplo, si abonas $10,000 adicionales en la mensualidad 24, el simulador calcula cómo se reduce el saldo. Por ahora, el prepago reduce el plazo; la reducción de mensualidad sigue pendiente de validación contra el Excel.</p>
+          <div class="form-grid">
+            <div class="campo">
+              <label for="mesPrepago">¿En qué mensualidad harás el pago extra?</label>
+              <input id="mesPrepago" type="number" min="1" max="240" step="1" placeholder="Ej. 24">
+              <p class="ayuda-campo">Mes 1 es el primer pago del crédito; mes 24 es el pago número 24.</p>
+            </div>
+            <div class="campo">
+              <label for="montoPrepago">Cantidad adicional que abonarás al capital ($)</label>
+              <input id="montoPrepago" type="number" min="0" step="0.01" placeholder="Ej. 10000">
+              <p class="ayuda-campo">Es un pago extra, distinto de la mensualidad habitual. Puede generar penalización según el producto contratado.</p>
+            </div>
+          </div>
+        </div>
+      </details>
 
-    </main>
+      <button id="btnCalcular" type="button">Calcular crédito</button>
+      <div id="mensajesSimulacion" class="mensajes-simulacion" role="status" aria-live="polite" hidden></div>
+    </section>
 
+    <section class="resultados" id="bloqueResultados">
+      <div class="resultado-header"><span class="resultado-etiqueta">SIMULACIÓN</span>
+        <h2>Resultado de tu crédito</h2>
+        <p>Después de calcular, puedes elegir otra campaña/tasa del catálogo y obtener nuevamente los resultados sin cambiar el monto del crédito.</p>
+      </div>
+      <div class="resultados-grid">
+        <div class="resultado-card resultado-principal"><span class="resultado-label">Crédito bancario estimado</span><strong id="creditoResultado" class="resultado-valor">$0.00</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Pago mensual inicial (con seguros)</span><strong id="pagoResultado" class="resultado-valor-pequeno">$0.00</strong></div>
+        <div class="resultado-card"><label class="resultado-label" for="catalogoTasa">Campaña · Tasa · Pago por millar</label>
+          <select id="catalogoTasa" class="resultado-select"><option value="">Calcula primero tu crédito</option></select>
+        </div>
+        <div class="resultado-card"><span class="resultado-label">CAT estimado</span><strong id="catResultado" class="resultado-valor-pequeno">—</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Plazo contratado / liquidación</span><strong id="plazoResultado" class="resultado-valor-pequeno">—</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Monto total estimado pagado</span><strong id="totalPagadoResultado" class="resultado-valor-pequeno">$0.00</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Tasa inicial</span><strong id="tasaResultado" class="resultado-valor-pequeno">—</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Pago por millar (PPM)</span><strong id="ppmResultado" class="resultado-valor-pequeno">—</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Aforo (LTV)</span><strong id="aforoResultado" class="resultado-valor-pequeno">—</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Crédito Infonavit (estimado)</span><strong id="infonavitResultado" class="resultado-valor-pequeno">$0.00</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Enganche estimado</span><strong id="engancheResultado" class="resultado-valor-pequeno">$0.00</strong></div>
+        <div class="resultado-card"><span class="resultado-label">Inversión inicial del cliente</span><strong id="inversionResultado" class="resultado-valor-pequeno">$0.00</strong></div>
+      </div>
+      <div class="recalcular-contenedor"><button id="btnRecalcular" class="btn-recalcular" type="button">Recalcular con esta tasa</button></div>
+    </section>
 
-    <!-- PIE DE PÁGINA -->
+    <section class="bloque-gastos">
+      <h2>Gastos iniciales</h2>
+      <div class="gastos-grid">
+        <div class="gasto-card"><h3>Avalúo</h3><p id="avaluo">$0.00</p></div>
+        <div class="gasto-card"><h3>Impuestos</h3><p id="impuestos">$0.00</p></div>
+        <div class="gasto-card"><h3>Notario</h3><p id="notario">$0.00</p></div>
+        <div class="gasto-card"><h3>Comisión por apertura</h3><p id="comision">$0.00</p></div>
+        <div class="gasto-card"><h3>Originación Infonavit</h3><p id="comisionInfonavit">$0.00</p></div>
+        <div class="gasto-card"><h3>Gastos totales</h3><p id="gastosTotal">$0.00</p></div>
+      </div>
+    </section>
 
-    <footer>
+    <section class="amortizacion">
+      <h2>Tabla de amortización</h2>
+      <p class="nota-campo">Los importes se muestran con dos decimales; el cálculo conserva la precisión interna del Excel. El pago total incluye el prepago, si existe.</p>
+      <div class="tabla-container"><table>
+        <thead><tr>
+          <th>Mes</th><th>Periodo</th><th>Saldo inicial</th><th>Tasa</th><th>Interés</th><th>Erogación</th>
+          <th>Abono a capital</th><th>Prepago</th><th>Aportación Infonavit</th><th>Seguros</th><th>Pago total</th><th>Saldo final</th>
+        </tr></thead>
+        <tbody id="tablaBody"><tr><td colspan="12">Calcula un crédito para ver su amortización.</td></tr></tbody>
+      </table></div>
+    </section>
+  </main>
+  <footer><p>ASTRAEUS · Simulador hipotecario académico · Resultados sujetos a validación por escenario.</p></footer>
 
-        Simulador hipotecario · Información con fines ilustrativos
-
-    </footer>
-
-    <script src="js/app.js"></script>
+  <!-- Orden importante: catálogos → cálculos → interfaz → menú existente -->
+  <script src="js/catalogos.js"></script>
+  <script src="js/motor-financiero.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/menu.js"></script>
 </body>
-
 </html>
