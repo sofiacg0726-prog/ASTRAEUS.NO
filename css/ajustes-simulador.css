@@ -1,0 +1,42 @@
+/* ASTRAEUS: únicamente reglas complementarias para el nuevo simulador.
+   No sustituye ni reescribe css/styles.css. */
+.nota-campo { color:#687580; font-size:13px; line-height:1.7; margin:0 0 18px; }
+.formulario .nota-campo:last-of-type { margin-top:18px; margin-bottom:0; }
+.campo[hidden] { display:none; }
+.campo input[type="date"] { min-height:46px; }
+.bloque-gastos .gastos-grid {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  border-left:1px solid #e1e5e9; border-top:1px solid #e1e5e9;
+}
+.bloque-gastos .gasto-card { background:#fff; padding:22px; border-right:1px solid #e1e5e9; border-bottom:1px solid #e1e5e9; }
+.bloque-gastos .gasto-card h3 { color:#52616d; font-size:12px; font-weight:600; margin-bottom:6px; }
+.bloque-gastos .gasto-card p { color:#0b1f33; font-size:18px; font-weight:700; }
+.resultado-card .resultado-select { width:100%; min-width:0; font-size:13px; }
+.resultado-card .resultado-label { display:block; }
+.mensajes-simulacion { padding:15px 18px; margin-top:18px; border:1px solid #d6dee5; border-left:3px solid #6e1f35; background:#f8fafb; color:#253443; font-size:13px; }
+.mensajes-simulacion.error { background:#fff7f7; border-left-color:#b62642; }
+.mensajes-simulacion ul { margin:8px 0 0 20px; }
+.resultados-grid .resultado-card { min-width:0; }
+.tabla-container { overflow-x:auto; }
+.tabla-container table { min-width:1450px; }
+.tabla-container th, .tabla-container td { white-space:nowrap; font-variant-numeric:tabular-nums; }
+.tabla-container td { text-align:right; }
+.tabla-container td:first-child, .tabla-container td:nth-child(2) { text-align:center; }
+@media (max-width:700px) { .bloque-gastos .gastos-grid { grid-template-columns:repeat(1,minmax(0,1fr)); } }
+
+/* Versión con explicación de campos: NO modifica cálculos, catálogos o menú. */
+.ayuda-campo { color:#647381; font-size:12px; line-height:1.55; margin:6px 0 0; }
+.opciones-avanzadas { margin-top:17px; border:1px solid #d9e0e6; border-radius:6px; background:#fff; overflow:hidden; }
+.opciones-avanzadas summary { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:18px 21px; cursor:pointer; color:#0b1f33; background:#f8f9fb; list-style:none; }
+.opciones-avanzadas summary::-webkit-details-marker { display:none; }
+.opciones-avanzadas summary strong { display:block; font-size:14px; font-weight:600; }
+.opciones-avanzadas summary small { display:block; font-size:12px; color:#697681; line-height:1.5; margin-top:4px; }
+.opciones-avanzadas summary:hover { background:#f2f4f7; }
+.opciones-avanzadas summary:focus-visible { outline:2px solid #6e1f35; outline-offset:-3px; }
+.indicador-detalles { flex:0 0 auto; color:#6e1f35; font-size:23px; font-weight:400; line-height:1; }
+.opciones-avanzadas[open] .indicador-detalles { transform:rotate(45deg); }
+.contenido-avanzado { padding:22px 22px 24px; border-top:1px solid #e1e5e9; }
+.contenido-avanzado .form-grid { margin-top:16px; }
+.explicacion-avanzada { font-size:13px; color:#52616d; line-height:1.7; max-width:800px; }
+.opciones-avanzadas .campo[hidden] { display:none !important; }
+@media(max-width:700px) { .opciones-avanzadas summary { padding:15px 16px; } .contenido-avanzado { padding:18px 16px; } }
